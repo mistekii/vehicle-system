@@ -2,4 +2,5 @@
 .editorconfig
 icon.svg
 icon.svg.import
-addons/imgui-godot
+addons
+*.tmp
