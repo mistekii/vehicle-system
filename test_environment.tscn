@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh8aqo04cjxer"]
+[gd_scene load_steps=9 format=3 uid="uid://dh8aqo04cjxer"]
 
 [ext_resource type="PackedScene" uid="uid://cpa6mgs3swipn" path="res://vehicle.tscn" id="1_oyxwl"]
 
@@ -15,14 +15,19 @@ sky = SubResource("Sky_hu1ts")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ykjp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyxwl"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_oyxwl"]
-material = SubResource("StandardMaterial3D_3ykjp")
-size = Vector2(100, 100)
+[sub_resource type="BoxMesh" id="BoxMesh_oyxwl"]
+material = SubResource("StandardMaterial3D_oyxwl")
+size = Vector3(100, 1, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hu1ts"]
+
+[sub_resource type="Curve" id="Curve_oyxwl"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.3, 0.9), 0.0, 0.0, 0, 0, Vector2(0.6, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
 
 [node name="test_environment" type="Node3D"]
 
@@ -36,11 +41,13 @@ shadow_enabled = true
 [node name="floor" type="StaticBody3D" parent="."]
 
 [node name="mesh" type="MeshInstance3D" parent="floor"]
-mesh = SubResource("PlaneMesh_oyxwl")
+mesh = SubResource("BoxMesh_oyxwl")
 skeleton = NodePath("../..")
 
 [node name="collision" type="CollisionShape3D" parent="floor"]
 shape = SubResource("WorldBoundaryShape3D_hu1ts")
 
 [node name="vehicle" parent="." instance=ExtResource("1_oyxwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77831, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.21114, 2.77831, 0)
+acceleration = 20.0
+accel_curve = SubResource("Curve_oyxwl")
