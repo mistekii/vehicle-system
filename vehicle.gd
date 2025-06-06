@@ -62,8 +62,9 @@ func _do_single_wheel_suspension(wheel: Wheel3D) -> void:
 		var relative_vel := spring_up_dir.dot(world_vel)
 		var spring_damp_force := wheel.spring_damping * relative_vel
 
-		var force_vector := (spring_force - spring_damp_force) * spring_up_dir
+		var force_vector := (spring_force - spring_damp_force) * wheel.get_collision_normal()
 
+		contact = wheel.mesh.global_position
 		var force_pos_offset := contact - global_position
 		apply_force(force_vector, force_pos_offset)
-		DebugDraw3D.draw_arrow_ray(contact, force_vector / mass, 1, Color(1, 0, 0), 0.1)
+		DebugDraw3D.draw_arrow_ray(contact, force_vector / mass, 1, Color.RED, 0.1)
