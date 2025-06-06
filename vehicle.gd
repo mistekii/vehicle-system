@@ -16,6 +16,10 @@ func _get_point_velocity(point: Vector3) -> Vector3:
 # calculate & apply suspension forces
 func _do_single_wheel_suspension(suspension_ray: RayCast3D) -> void:
 	if suspension_ray.is_colliding():
+		# ensure that the raycast will only collide when 
+		# when the wheel is *actually* touching the ground
+		suspension_ray.target_position.y = -(rest_dist + wheel_radius)
+
 		var contact := suspension_ray.get_collision_point()
 		var spring_up_dir := suspension_ray.global_transform.basis.y
 		var spring_len := suspension_ray.global_position.distance_to(contact) - wheel_radius
