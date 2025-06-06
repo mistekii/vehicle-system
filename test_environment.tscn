@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh8aqo04cjxer"]
+
+[ext_resource type="PackedScene" uid="uid://cpa6mgs3swipn" path="res://vehicle.tscn" id="1_oyxwl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oyxwl"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hu1ts"]
+sky_material = SubResource("ProceduralSkyMaterial_oyxwl")
+
+[sub_resource type="Environment" id="Environment_mdi38"]
+background_mode = 2
+sky = SubResource("Sky_hu1ts")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ykjp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oyxwl"]
+material = SubResource("StandardMaterial3D_3ykjp")
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hu1ts"]
+
+[node name="test_environment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mdi38")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("PlaneMesh_oyxwl")
+skeleton = NodePath("../..")
+
+[node name="collision" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_hu1ts")
+
+[node name="vehicle" parent="." instance=ExtResource("1_oyxwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77831, 0)
