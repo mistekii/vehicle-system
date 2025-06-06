@@ -24,6 +24,7 @@ height = 0.15
 [node name="vehicle" type="RigidBody3D" node_paths=PackedStringArray("wheels")]
 script = ExtResource("1_andsp")
 wheels = [NodePath("wheels/fl"), NodePath("wheels/fr"), NodePath("wheels/rl"), NodePath("wheels/rr")]
+acceleration = 10.0
 
 [node name="meshes" type="Node3D" parent="."]
 
@@ -43,7 +44,9 @@ shape = SubResource("BoxShape3D_24jkt")
 
 [node name="fl" type="RayCast3D" parent="wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -1.5)
+enabled = false
 script = ExtResource("2_fouyv")
+wheel_radius = 0.9
 
 [node name="mesh" type="MeshInstance3D" parent="wheels/fl"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.5, 0)
@@ -51,7 +54,9 @@ mesh = SubResource("CylinderMesh_andsp")
 
 [node name="fr" type="RayCast3D" parent="wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, -1.5)
+enabled = false
 script = ExtResource("2_fouyv")
+wheel_radius = 0.9
 
 [node name="mesh" type="MeshInstance3D" parent="wheels/fr"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.5, 0)
@@ -59,7 +64,10 @@ mesh = SubResource("CylinderMesh_andsp")
 
 [node name="rl" type="RayCast3D" parent="wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, 1.5)
+enabled = false
 script = ExtResource("2_fouyv")
+wheel_radius = 0.9
+is_motor = true
 
 [node name="mesh" type="MeshInstance3D" parent="wheels/rl"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.5, 0)
@@ -67,11 +75,14 @@ mesh = SubResource("CylinderMesh_andsp")
 
 [node name="rr" type="RayCast3D" parent="wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 1.5)
+enabled = false
 script = ExtResource("2_fouyv")
+wheel_radius = 0.9
+is_motor = true
 
 [node name="mesh" type="MeshInstance3D" parent="wheels/rr"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("CylinderMesh_andsp")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995794, 0.0916233, 0, -0.0916233, 0.995794, 0, 1.50487, 5.12289)
+transform = Transform3D(0.544024, 0.0768783, -0.83554, 0, 0.995794, 0.0916233, 0.83907, -0.0498453, 0.541736, -3.62918, 1.50487, 3.30442)

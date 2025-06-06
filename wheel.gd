@@ -6,5 +6,6 @@ class_name Wheel3D
 @export var rest_dist := 0.5
 @export var over_extend := 0.0 # used to control how much the wheel "sticks" to the ground
 @export var wheel_radius := 0.4
+@export var is_motor := false
 
 @onready var mesh: Node3D = get_child(0)
