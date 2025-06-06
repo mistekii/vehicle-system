@@ -83,6 +83,3 @@ is_motor = true
 [node name="mesh" type="MeshInstance3D" parent="wheels/rr"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("CylinderMesh_andsp")
-
-[node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(0.544024, 0.0768783, -0.83554, 0, 0.995794, 0.0916233, 0.83907, -0.0498453, 0.541736, -3.62918, 1.50487, 3.30442)
